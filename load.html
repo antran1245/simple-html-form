@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML PAGE</title>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body { 
+				margin: 0;
+				font-family: Arial, Helvetica, sans-serif; 
+			}
+			canvas { display: block; }
+			* {
+			 box-sizing: border-box;
+			}
+			.button {
+				position: absolute;
+				border-radius: 8px;
+				padding: 12px 24px;
+				background-color: #f44336;
+				font-size: 16px;
+				border: 2px solid #f44336; 
+				margin-left: 10px;
+			}
+			.form-popup {
+				display: none;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				border: 3px solid #f1f1f1;
+				z-index: 9;
+				background-color: white;
+				transform: translate(-50%,-50%);
+			}
+			.from-container {
+				max-width: 300px;
+				padding: 10px;
+				background-color: white;
+			}
+			.form-container input[type=text], .form-container input[type=password], .form-container textarea[type=text] {
+				width: 100%;
+				padding: 15px;
+				margin: 5px 0 22px 0;
+				border: none;
+				background: #f1f1f1;
+			}
+			.form-container input[type=text]:focus, .form-container input[type=password]:focus .form-container textarea[type=text]:focus {
+				background-color: #ddd;
+				outline: none;
+			}
+			.form-container .btn {
+				background-color: #4CAF50;
+				color: white;
+				padding: 16px 20px;
+				border: none;
+				cursor: pointer;
+				margin-bottom: 10px;
+				margin-left: 10%;
+				width: 80%;
+				opacity: 0.8;
+			}
+			.form-container .cancel {
+				background-color: red;
+			}
+			.button:hover {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- DO NOT REFRESH WEBSITE -->
+		<iframe name="no-refresh" style="display: none;"></iframe>
+		<!-- ADDING INFORMATION -->
+		<button style="margin-top: 10px;" class="button" onclick="openAddForm()">ADD</button> 
+		<div class="form-popup" id="addForm">
+			<form class="form-container" id="sphere-form" autocomplete="off"method="POST" action="php/db_connection.php" target="no-refresh" onsubmit="test()">
+				<h1>Sphere Information</h1>
+				<label for="information"><b>Information</b></label>
+				<textarea type="text" placeholder="Information" name="information" id="information" required></textarea> 
+				<label for="psw"><b>Password</b></label>
+				<input type="password" name="psw" placeholder="Password" id="psw">
+				<input type="hidden" name="x_value" id="x_value">
+				<input type="hidden" name="y_value" id="y_value">
+				<input type="hidden" name="z_value" id="z_value">
+				<input type="submit" name="add" class="btn" value="Add Sphere">
+				<button type="button" class="btn cancel" onclick="closeAddForm()">Cancel</button>
+			</form>
+		</div>
+		<!-- SEARCHING INFORMATION -->
+		<button style="margin-top: 60px;" class="button" onclick="openSearchForm()">SEARCH</button>
+		<div class="form-popup" id="searchForm">
+			<form class="form-container" id="search-form" autocomplete="off"method="POST" action="php/db_search.php" target="no-refresh">
+				<h1>Search</h1>
+				<label for="search-x"><b>X</b></label>
+				<input type="text" name="search-x" id="search-x" placeholder="X">
+				<label for="search-y"><b>Y</b></label>
+				<input type="text" name="search-y" id="search-y" placeholder="Y">
+				<label for="search-z"><b>Z</b></label>
+				<input type="text" name="search-z" id="search-z" placeholder="Z">
+				<label for="psw"><b>Password</b></label>
+				<input type="text" name="psw" id="searchPassword" placeholder="Password">
+				<input type="submit" name="search" class="btn" value="Search">
+				<button type="button" class="btn cancel" onclick="closeSearchForm()">Cancel</button>
+			</form>
+		</div>
+		<!-- CLICKING SPHERES -->
+		<div style="display: none;">
+			<form method="POST" target="no-refresh" autocomplete="off" id="clickForm" action="php/db_search.php">
+				<input type="hidden" name="searchX_value" id="searchX_value">
+				<input type="hidden" name="searchY_value" id="searchY_value">
+				<input type="hidden" name="searchZ_value" id="searchZ_value">
+			</form>
+		</div>
+		<script src="js/three.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="dic.js"></script>
+	</body>
+</html>
