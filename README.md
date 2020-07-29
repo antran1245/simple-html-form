@@ -8,4 +8,4 @@ Goal: Create an online database with the capablity of sharing information annoym
 Need to finish setting up password authentication.
 
 Require the js folder to contain OrbitControls.js and three.js in order for the code to work.
-Recommendation: https://github.com/mrdoob for those two js files.
+Recommend using the files from https://github.com/mrdoob for those two js files.
